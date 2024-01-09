@@ -20,8 +20,24 @@ for (const event of events) {
   });
 }
 
-(async () => {
-  video.muted = true;
-  video.loop = true;
-  await video.play();
-})();
+video.muted = true;
+video.loop = true;
+
+document.addEventListener("DOMContentLoaded", function () {
+  let videoPlayed = false; // Flag to ensure video plays only once
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !videoPlayed) {
+          video.play();
+          videoPlayed = true; // Update the flag after playing
+          observer.unobserve(entry.target); // Stop observing after playing
+        }
+      });
+    },
+    { threshold: 0.0 },
+  ); // Adjust threshold as needed
+
+  observer.observe(video);
+});
