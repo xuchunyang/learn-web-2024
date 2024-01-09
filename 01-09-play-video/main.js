@@ -1,7 +1,27 @@
-console.log("01-09-play-video/main.js");
+const video = document.querySelector("video");
 
-document.querySelectorAll("video").forEach(async (video) => {
-  // 浏览器允许静音的视频自动播放
+const events = [
+  "loadedmetadata",
+  "loadeddata",
+  "canplay",
+  "canplaythrough",
+  "play",
+  "playing",
+  "pause",
+  "ended",
+  "emptied",
+  "stalled",
+  "waiting",
+  "error",
+];
+for (const event of events) {
+  video.addEventListener(event, () => {
+    console.log(event);
+  });
+}
+
+(async () => {
   video.muted = true;
+  video.loop = true;
   await video.play();
-});
+})();
