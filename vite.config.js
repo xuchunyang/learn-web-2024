@@ -1,4 +1,5 @@
 // vite.config.js
+import vue from '@vitejs/plugin-vue'
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import { readdirSync, statSync } from "fs";
@@ -33,6 +34,7 @@ process.env.VITE_GIT_TOTAL_COMMITS = execSync("git rev-list HEAD --count")
   .trim();
 
 export default defineConfig({
+  plugins: [vue()],
   build: {
     rollupOptions: {
       input: {
