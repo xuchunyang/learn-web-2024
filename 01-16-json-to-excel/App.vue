@@ -24,6 +24,7 @@ const fields = {
   "主要客户或典型案例": null,
   "主要著述": null,
   "立法经验": null,
+  "头像地址": 'pic_url',
 };
 
 const dataContainer = ref({
