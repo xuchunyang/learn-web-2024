@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { utils, writeFileXLSX } from "xlsx";
 
 import data from "./zyry.json";
@@ -25,6 +25,7 @@ const fields = {
   "主要著述": null,
   "立法经验": null,
   "头像地址": 'pic_url',
+  "个人简介（JSON）": null,
 };
 
 const dataContainer = ref({
@@ -55,12 +56,57 @@ const exportToExcel = () => {
   utils.book_append_sheet(wb, ws, "SheetJS");
   writeFileXLSX(wb, "SheetJS.xlsx");
 };
+
+const divRef = ref(null);
+
+function splitDOMByElements(contentInHtml) {
+  divRef.value.innerHTML = contentInHtml;
+  const headings = [...divRef.value.querySelectorAll('p > span[style*="18px"]')]
+    .filter((el) => el.textContent.trim())
+    .map((el) => el.parentElement);
+  let result = [];
+
+  headings.forEach((heading, index) => {
+    let content = "";
+    let nextElement = heading.nextElementSibling;
+
+    while (nextElement) {
+      if (headings.includes(nextElement)) {
+        break;
+      }
+
+      content += nextElement.outerHTML;
+      nextElement = nextElement.nextElementSibling;
+    }
+
+    result.push({
+      title: heading.outerHTML,
+      content: content,
+    });
+  });
+
+  return result;
+}
+
+onMounted(() => {
+  dataContainer.value.list.forEach((item, idx) => {
+    const results = splitDOMByElements(item["个人简介"]);
+
+    dataContainer.value.list[idx]["个人简介（JSON）"] = JSON.stringify(
+      results,
+      null,
+      2,
+    );
+  });
+});
 </script>
 
 <template>
   <div>
     <el-button type="primary" @click="exportToExcel">Export to Excel</el-button>
   </div>
+
+  <div ref="divRef"></div>
 
   <el-table
     :data="dataContainer.list"
