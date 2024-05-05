@@ -1,0 +1,22 @@
+body {
+    background-color: #f0f0f0;
+    line-height: 1;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    box-sizing: border-box;
+    min-height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.03);
+    background-image: url("./mark1.svg");
+    background-size: 100px;
+    background-repeat: repeat;
+    padding: 1rem;
+}
+
+p {
+    font-size: 2rem;
+    line-height: 1.6;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watermark</title>
+</head>
+<body>
+
+<main>
+    <svg width="100%" height="500">
+        <defs>
+            <pattern id="star" viewBox="0,0,10,10" width="10%" height="10%">
+                <polygon points="0,0 2,5 0,10 5,8 10,10 8,5 10,0 5,2"/>
+            </pattern>
+            <pattern id="watermark" viewBox="0,0,140,140" width="20%" height="20%">
+                <text style="opacity: 1; transform: rotate(45deg); fill: red;" x="10">Hello World!</text>
+            </pattern>
+        </defs>
+        <!--        <rect width="500" height="500" fill="url(#star)" />-->
+        <rect width="100%" height="500" fill="url(#watermark)"/>
+    </svg>
+    <p>
+        lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur atque autem
+    </p>
+    <p>
+        lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur atque autem
+    </p>
+    <p>
+        lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur atque autem
+    </p>
+    <p>
+        lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur atque autem
+    </p>
+    <p>
+        lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur atque autem
+    </p>
+</main>
+
+
+<script type="module" src="./main.js"></script>
+</body>
+</html>
