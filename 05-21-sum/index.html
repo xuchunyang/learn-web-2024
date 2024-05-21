@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sum</title>
+</head>
+<body>
+
+<h1>寄托物信息</h1>
+
+<button>增加一行</button>
+
+<ul>
+    <li>
+        <input class="count" placeholder="数量" value="3">
+        <input class="price"  placeholder="价格" value="1">
+        <button>删除</button>
+    </li>
+    <li>
+        <input class="count"  placeholder="数量" value="2">
+        <input class="price"  placeholder="价格" value="4">
+        <button>删除</button>
+    </li>
+</ul>
+
+<input placeholder="总价">
+
+<script>
+    var total = 0;
+
+    const countElems = document.querySelectorAll('.count');
+    const priceElems = document.querySelectorAll('.price');
+
+    for (let i = 0; i < countElems.length; i++) {
+        total = total + countElems[i].value * priceElems[i].value;
+    }
+
+    document.querySelector('input[placeholder="总价"]').value = total;
+</script>
+</body>
+</html>
