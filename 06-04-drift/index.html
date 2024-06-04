@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn drift (zoom)</title>
+    <link rel="stylesheet" href="./drift-basic.css">
+    <style>
+        :root {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: rgba(55, 51, 51, 0.8);
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .product {
+            background-color: #fff;
+            max-width: 800px;
+            margin: 100px auto;
+            display: flex;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .product-detail {
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        .product-detail h1 {
+            margin: 0 0 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="product">
+    <div class="product-image">
+        <img src="./dog_w400.png" data-zoom="./dog_w1200.png">
+    </div>
+    <div class="product-detail">
+        <h1>Product Name</h1>
+        <p>
+            lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur
+        </p>
+        <p>
+            lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur
+        </p>
+        <p>
+            lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur
+        </p>
+        <p>
+            lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet aperiam aspernatur
+        </p>
+    </div>
+</div>
+
+
+<script src="./Drift.js"></script>
+<script>
+    new Drift(document.querySelector("img"), {
+        paneContainer: document.querySelector(".product-detail"),
+        inlinePane: false,
+    });
+</script>
+</body>
+</html>
