@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Marker</title>
+    <!-- The callback parameter is required, so we use console.debug as a noop -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7P1ZicQLcks09Q4IPKQ2VF9gV_NSw1BE&callback=console.debug&libraries=maps,marker&v=beta&language=en">
+    </script>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        gmp-map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<gmp-map center="31.350522994995117,121.26310729980469" zoom="16" map-id="DEMO_MAP_ID">
+    <gmp-advanced-marker position="31.350522994995117,121.26310729980469" title="My location 1"></gmp-advanced-marker>
+    <gmp-advanced-marker position="31.350522994995117,121.26410729980469" title="My location 2"></gmp-advanced-marker>
+    <gmp-advanced-marker position="31.351522994995117,121.26510729980469" title="My location 3"></gmp-advanced-marker>
+</gmp-map>
+<script>
+    // Handle marker click event
+    document.addEventListener('gmp-marker-click', function (event) {
+        console.log('Marker clicked:', event.detail);
+    });
+</script>
+</body>
+</html>
