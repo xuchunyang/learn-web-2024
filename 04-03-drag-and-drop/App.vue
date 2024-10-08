@@ -1,6 +1,56 @@
 <script setup>
-import { useDragAndDrop } from "@formkit/drag-and-drop/vue";
+import { dragAndDrop, useDragAndDrop } from "@formkit/drag-and-drop/vue";
 import { animations } from "@formkit/drag-and-drop";
+import {reactive, ref, useTemplateRef} from "vue";
+
+const myParentRef = useTemplateRef("my-parent");
+
+const animals = ref([
+  "🐶 Dog",
+  "🐱 Cat",
+  "🐭 Mouse",
+  "🐹 Hamster",
+  "🐰 Rabbit",
+]);
+dragAndDrop({
+  parent: myParentRef,
+  values: animals,
+  config: {},
+});
+
+const myParentRefs = ref([null, null, null]);
+
+const groupedAnimals = reactive([
+  {
+    group: "Mammals",
+    items: ["🐶 Dog", "🐱 Cat", "🐭 Mouse", "🐹 Hamster", "🐰 Rabbit"],
+  },
+  {
+    group: "Birds",
+    items: ["🦜 Parrot", "🦢 Swan", "🦆 Duck", "🦉 Owl", "🦚 Peacock"],
+  },
+  {
+    group: "Fish",
+    items: ["🐠 Fish", "🐟 Fish", "🐡 Fish", "🦈 Shark", "🐬 Dolphin"],
+  },
+]);
+
+groupedAnimals.forEach((item) => {
+  console.log("item", item, item.items);
+  return;
+  dragAndDrop({
+    // parent: myParentRefs.value,
+    values: item.items,
+    config: {},
+  });
+});
+
+// groupedAnimals.value.forEach((item, idx) => {
+//   dragAndDrop({
+//     parent: myParentRefs.value[idx],
+//     values: item.items,
+//   });
+// });
 
 const [parent, tapes] = useDragAndDrop(
   [
@@ -13,7 +63,7 @@ const [parent, tapes] = useDragAndDrop(
   ],
   {
     draggable(el) {
-      console.log("draggable", el);
+      // console.log("draggable", el);
       return true;
     },
     plugins: [animations()],
@@ -41,6 +91,10 @@ const [doneList, dones] = useDragAndDrop(doneItems, {
 
 <template>
   <h1>Learn drag and drop from FormKit</h1>
+
+  <ul ref="my-parent">
+    <li class="item" v-for="item in animals" :key="item">{{ item }}</li>
+  </ul>
 
   <pre class="raw">{{ tapes }}</pre>
 
