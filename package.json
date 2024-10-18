@@ -21,6 +21,7 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   },
   "dependencies": {
-    "@formkit/drag-and-drop": "^0.0.38"
+    "@formkit/drag-and-drop": "^0.0.38",
+    "@vueuse/core": "^11.1.0"
   }
 }
